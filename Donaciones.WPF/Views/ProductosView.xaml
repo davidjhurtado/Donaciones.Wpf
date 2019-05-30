@@ -1,0 +1,55 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Donaciones.WPF"
+        xmlns:WPF="clr-namespace:Donaciones.WPF" x:Class="Donaciones.WPF.ProductosView"
+        mc:Ignorable="d"
+        Title="Productos" Height="200" Width="530" Loaded="Window_Loaded">
+    <Window.Resources>
+        <!--<CollectionViewSource 
+            x:Key="productosViewSource" 
+            d:DesignSource="{d:DesignInstance {x:Type WPF:Productos}, CreateList=True}"/>-->
+    </Window.Resources>
+    <Grid x:Name="grdProductosWindow" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="stpToolBar" Grid.Row="0" Orientation="Horizontal" Margin="2,2,2,0" Height="36" VerticalAlignment="Top" Background="Gainsboro"  d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+            <Button Name="btnFirst" Content="|◄" Command="{Binding FirstCommand}" Style="{StaticResource NavButton}"/>
+            <Button Name="btnPrev" Content="◄" Command="{Binding MovePreviousCommand}" Style="{StaticResource NavButton}"/>
+            <Button Name="btnNext" Content="►" Command="{Binding MoveNextCommand}" Style="{StaticResource NavButton}"/>
+            <Button Name="btnLast" Content="►|" Command="{Binding LastCommand}" Style="{StaticResource NavButton}"/>
+            <Button Name="btnAdd" Content="Nuevo" Command="{Binding AddCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
+            <Button Name="btnUpdate" Content="Guardar" Command="{Binding UpdateCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
+            <Button Name="btnDelete" Content="Borrar" Command="{Binding DeleteCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
+            <Button Name="btnCancel" Content="Cancelar"  Command="{Binding CancelCommand}" FontSize="11" Width="80" Style="{StaticResource NavButton}"/>
+        </StackPanel>
+        
+        <Grid x:Name="grdProductos" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="AliceBlue" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Código Producto:" Grid.Column="0"  Grid.Row="0" Style="{StaticResource lblFieldName}" />
+            <TextBox x:Name="productoIDTextBox" Grid.Column="1" Grid.Row="0" Text="{Binding ProductoID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Style="{StaticResource txtFieldStyle}" IsEnabled="False"/>
+            <Label Content="Descontinuado:" Grid.Column="2" Grid.Row="0" Style="{StaticResource lblFieldName}" HorizontalAlignment="Right"/>
+            <CheckBox x:Name="descontinuadoCheckBox" Content="" Grid.Column="3" HorizontalAlignment="Left" IsChecked="{Binding Descontinuado, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <Label Content="Nombre Producto:" Grid.Column="0" Grid.Row="1" Style="{StaticResource lblFieldName}"/>
+            <TextBox x:Name="nombreProductoTextBox" Grid.Column="1" Grid.Row="1" Text="{Binding NombreProducto, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="350" Grid.ColumnSpan="3" Style="{StaticResource txtFieldStyle}"/>
+            <Label Content="Cantidad Por Unidad:" Grid.Column="0" Grid.Row="2" Style="{StaticResource lblFieldName}"/>
+            <TextBox x:Name="cantidadPorUnidadTextBox" Grid.Column="1" Grid.Row="2" Text="{Binding CantidadPorUnidad, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="80" Style="{StaticResource txtFieldStyle}"/>
+            <Label Content="Precio Unitario:" Grid.Column="2" Margin="3" Grid.Row="4" Style="{StaticResource lblFieldName}"/>
+            <TextBox x:Name="precioUnitarioTextBox" Grid.Column="3" Grid.Row="4" Text="{Binding PrecioUnitario, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="120" Style="{StaticResource txtFieldStyle}"/>
+        </Grid>
+    </Grid>
+</Window>
