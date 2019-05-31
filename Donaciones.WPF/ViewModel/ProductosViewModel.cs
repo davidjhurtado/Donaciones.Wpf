@@ -2,7 +2,10 @@
 using System.Windows.Input;
 
 namespace Donaciones.WPF {
-    public class ProductosViewModel :BaseViewModelComputed {
+    public interface IProductosViewModel {
+    }
+    public class ProductosViewModel :BaseViewModelComputed, IProductosViewModel {
+
 
         #region Variables
         private Productos Model;
