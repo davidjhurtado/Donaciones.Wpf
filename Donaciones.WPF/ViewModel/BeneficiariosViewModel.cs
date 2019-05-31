@@ -1,7 +1,9 @@
 ﻿using System.Windows.Input;
 
 namespace Donaciones.WPF {
-    public class BeneficiariosViewModel :BaseViewModelComputed {
+    public interface IBeneficiariosViewModel {
+    }
+    public class BeneficiariosViewModel :BaseViewModelComputed, IBeneficiariosViewModel {
         #region Variables
         private readonly IBeneficiariosRepository beneficiariosRepository;
         private Beneficiarios Model;
@@ -115,6 +117,110 @@ namespace Donaciones.WPF {
                 Model.Fax = value;
                 RaisePropertyChanged();
             }
+        }
+        #endregion
+
+        #region Comandos
+        private bool FirstCommand_CanExecute() {
+            return true;
+        }
+        private void FirstCommand_Executed() {
+            Model = beneficiariosRepository.GetFirstBeneficiario();
+            InicializeModelWhenNull(Model);
+            RisePropertyChangedAll();
+        }
+
+        private bool MoveNextCommand_CanExecute() {
+            return true;
+        }
+        private void MoveNextCommand_Executed() {
+            Beneficiarios BeneficiariosNext = beneficiariosRepository.GetNextBeneficiario(Model.BeneficiarioID);
+            if (BeneficiariosNext != null) {
+                Model = BeneficiariosNext;
+            }
+            InicializeModelWhenNull(Model);
+            RisePropertyChangedAll();
+        }
+
+        private bool MovePreviousCommand_CanExecute() {
+            return true;
+        }
+        private void MovePreviousCommand_Executed() {
+            Beneficiarios BeneficiariosPrevious = beneficiariosRepository.GetPreviousBeneficiario(Model.BeneficiarioID);
+            if (BeneficiariosPrevious != null) {
+                Model = BeneficiariosPrevious;
+            }
+            InicializeModelWhenNull(Model);
+            RisePropertyChangedAll();
+        }
+
+
+        private bool LastCommand_CanExecute() {
+            return true;
+        }
+        private void LastCommand_Executed() {
+            Model = beneficiariosRepository.GetLastBeneficiario();
+            InicializeModelWhenNull(Model);
+            RisePropertyChangedAll();
+        }
+
+        private bool AddCommand_CanExecute() {
+            return true;
+        }
+        private void AddCommand_Executed() {
+            CanCancel = true;
+            ActualBeneficiarioID  = Model.BeneficiarioID;
+            InicializeModelWhenNull(null);
+            //Model.BeneficiarioID = beneficiariosRepository.NextBeneficiarioConsecutivo();
+            RisePropertyChangedAll();
+            ((RelayCommand)CancelCommand).Refresh();
+        }
+
+        private bool UpdateCommand_CanExecute() {
+            return true;
+        }
+        private void UpdateCommand_Executed() {
+            beneficiariosRepository.UpdateBeneficiario(Model);
+            Model = beneficiariosRepository.GetFirstBeneficiario();
+            InicializeModelWhenNull(Model);
+            RisePropertyChangedAll();
+        }
+
+        private bool DeleteCommand_CanExecute() {
+            return true;
+        }
+        private void DeleteCommand_Executed() {
+            beneficiariosRepository.DeleteBeneficiario(Model.BeneficiarioID);
+            Model = beneficiariosRepository.GetFirstBeneficiario();
+            InicializeModelWhenNull(Model);
+            RisePropertyChangedAll();
+        }
+
+        private bool CancelCommand_CanExecute() {
+            return CanCancel;
+        }
+        private void CancelCommand_Executed() {
+            Model = beneficiariosRepository.GetBeneficiario(ActualBeneficiarioID);
+            CanCancel = false;
+            InicializeModelWhenNull(Model);
+            RisePropertyChangedAll();
+        }
+        #endregion
+        #region Metodos Propios
+        private void InicializeModelWhenNull(Beneficiarios beneficiarios) {
+            if (beneficiarios == null) {
+                Model = new Beneficiarios() {
+                    BeneficiarioID = string.Empty
+                   ,Contacto = string.Empty
+                };
+            }
+        }
+        private void RisePropertyChangedAll() {
+            RaisePropertyChanged(nameof(BeneficiarioID));
+            RaisePropertyChanged(nameof(Contacto));
+            RaisePropertyChanged(nameof(Iglesia));
+            RaisePropertyChanged(nameof(Direccion));
+            RaisePropertyChanged(nameof(Region));
         }
         #endregion
     }
