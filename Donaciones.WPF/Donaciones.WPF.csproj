@@ -65,6 +65,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Libreria\RelayCommand.cs" />
+    <Compile Include="Repositorio\BeneficiariosRepository.cs" />
+    <Compile Include="Repositorio\IBeneficiariosRepository.cs" />
     <Compile Include="Repositorio\IProductosRepository.cs" />
     <Compile Include="Repositorio\ProductosRepository.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
