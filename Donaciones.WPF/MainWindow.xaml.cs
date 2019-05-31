@@ -22,11 +22,14 @@ namespace Donaciones.WPF {
         DonacionesDBEntities context = new DonacionesDBEntities ();
         CollectionViewSource benViewSource;
         CollectionViewSource ordViewSource;
-        public MainWindow() {
+        private readonly IProductosViewModel pvm;
+
+        public MainWindow(IProductosViewModel pvm) {
             InitializeComponent();
             benViewSource = ((CollectionViewSource)(FindResource("beneficiariosViewSource")));
             ordViewSource = ((CollectionViewSource)(FindResource("beneficiariosOrdenesViewSource")));
             DataContext = this;
+            this.pvm = pvm;
         }
 
         private void Window_Loaded(object sender,RoutedEventArgs e) {
@@ -46,11 +49,8 @@ namespace Donaciones.WPF {
         }
 
         private void Open_Click(object sender,RoutedEventArgs e) {
-            ProductosRepository pRep = new ProductosRepository(context);
-            ProductosViewModel pVM = new ProductosViewModel(pRep);
-            ProductosView productosView = new ProductosView(pVM );
+            ProductosView productosView = new ProductosView(pvm);
             productosView.Show();
-            //this.Close();
         }
     }
 }
