@@ -17,9 +17,9 @@ namespace Donaciones.WPF {
     /// Lógica de interacción para ProductosView.xaml
     /// </summary>
     public partial class ProductosView :Window {
-        private readonly ProductosViewModel productosViewModel;
+        private readonly IProductosViewModel productosViewModel;
 
-        public ProductosView(ProductosViewModel productosViewModel) {
+        public ProductosView(IProductosViewModel productosViewModel) {
             InitializeComponent();
             this.productosViewModel = productosViewModel;
             DataContext = this.productosViewModel;
