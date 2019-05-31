@@ -3,6 +3,7 @@
 namespace Donaciones.WPF {
     public interface IBeneficiariosViewModel {
     }
+
     public class BeneficiariosViewModel :BaseViewModelComputed, IBeneficiariosViewModel {
         #region Variables
         private readonly IBeneficiariosRepository beneficiariosRepository;
@@ -14,6 +15,24 @@ namespace Donaciones.WPF {
         #region Constructor
         public BeneficiariosViewModel(IBeneficiariosRepository beneficiariosRepository) {
             this.beneficiariosRepository = beneficiariosRepository;
+            LoadFirstBeneficiario();
+            InizializedCommands();
+        }
+        public void LoadFirstBeneficiario() {
+            Model = beneficiariosRepository.GetFirstBeneficiario();
+            InicializeModelWhenNull(Model);
+            RisePropertyChangedAll();
+        }
+
+        private void InizializedCommands() {
+            FirstCommand = new RelayCommand(FirstCommand_Executed,FirstCommand_CanExecute);
+            MoveNextCommand = new RelayCommand(MoveNextCommand_Executed,MoveNextCommand_CanExecute);
+            MovePreviousCommand = new RelayCommand(MovePreviousCommand_Executed,MovePreviousCommand_CanExecute);
+            LastCommand = new RelayCommand(LastCommand_Executed,LastCommand_CanExecute);
+            AddCommand = new RelayCommand(AddCommand_Executed,AddCommand_CanExecute);
+            UpdateCommand = new RelayCommand(UpdateCommand_Executed,UpdateCommand_CanExecute);
+            DeleteCommand = new RelayCommand(DeleteCommand_Executed,DeleteCommand_CanExecute);
+            CancelCommand = new RelayCommand(CancelCommand_Executed,CancelCommand_CanExecute);
         }
         #endregion
 
@@ -169,7 +188,7 @@ namespace Donaciones.WPF {
         }
         private void AddCommand_Executed() {
             CanCancel = true;
-            ActualBeneficiarioID  = Model.BeneficiarioID;
+            ActualBeneficiarioID = Model.BeneficiarioID;
             InicializeModelWhenNull(null);
             //Model.BeneficiarioID = beneficiariosRepository.NextBeneficiarioConsecutivo();
             RisePropertyChangedAll();
@@ -210,17 +229,31 @@ namespace Donaciones.WPF {
         private void InicializeModelWhenNull(Beneficiarios beneficiarios) {
             if (beneficiarios == null) {
                 Model = new Beneficiarios() {
-                    BeneficiarioID = string.Empty
-                   ,Contacto = string.Empty
+                     BeneficiarioID = string.Empty
+                   , Contacto = string.Empty
+                   , City = string.Empty
+                   , CodigoPostal = string.Empty
+                   , Direccion = string.Empty
+                   , Fax = string.Empty
+                   , Iglesia = string.Empty
+                   , Ordenes = null
+                   , Pais = string.Empty
+                   , Region = string.Empty
+                   , Telefono = string.Empty
                 };
             }
         }
         private void RisePropertyChangedAll() {
             RaisePropertyChanged(nameof(BeneficiarioID));
             RaisePropertyChanged(nameof(Contacto));
-            RaisePropertyChanged(nameof(Iglesia));
+            RaisePropertyChanged(nameof(City));
+            RaisePropertyChanged(nameof(CodigoPostal));
             RaisePropertyChanged(nameof(Direccion));
+            RaisePropertyChanged(nameof(Fax));
+            RaisePropertyChanged(nameof(Iglesia));
+            RaisePropertyChanged(nameof(Pais));
             RaisePropertyChanged(nameof(Region));
+            RaisePropertyChanged(nameof(Telefono));
         }
         #endregion
     }
