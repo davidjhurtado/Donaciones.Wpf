@@ -102,20 +102,30 @@
             <Label
                 Grid.Row="0"
                 Grid.Column="0"
-                Content="Beneficiario ID:"
+                Content="Código Beneficiario:"
                 Style="{StaticResource lblFieldName}" />
             <TextBox
                 x:Name="beneficiarioIDTextBox"
                 Grid.Row="0"
-                Grid.Column="2"
-                Width="120"
-                Height="24"
-                Margin="3,4,0,4"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Style="{StaticResource txtFieldStyle}"
                 Text="{Binding BeneficiarioID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
             <Label
                 Grid.Row="1"
+                Grid.Column="0"
+                Content="Contacto:"
+                Style="{StaticResource lblFieldName}" />
+            <TextBox
+                x:Name="contactoTextBox"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Width="420"
+                Style="{StaticResource txtFieldStyle}"
+                Text="{Binding Contacto, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+            <Label
+                Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Margin="3,3,0,3"
@@ -124,7 +134,7 @@
                 Content="City:" />
             <TextBox
                 x:Name="cityTextBox"
-                Grid.Row="1"
+                Grid.Row="2"
                 Grid.Column="2"
                 Width="120"
                 Height="24"
@@ -150,24 +160,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Text="{Binding CodigoPostal, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-            <Label
-                Grid.Row="3"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="3,3,0,3"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Content="Contacto:" />
-            <TextBox
-                x:Name="contactoTextBox"
-                Grid.Row="3"
-                Grid.Column="2"
-                Width="120"
-                Height="24"
-                Margin="3,4,0,4"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="{Binding Contacto, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
             <Label
                 Grid.Row="4"
                 Grid.Column="0"
