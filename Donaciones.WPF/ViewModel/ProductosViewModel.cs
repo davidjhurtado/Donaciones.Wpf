@@ -3,14 +3,15 @@ using System.Windows.Input;
 
 namespace Donaciones.WPF {
     public class ProductosViewModel :BaseViewModelComputed {
-        
-        public Productos Model;
+
+        #region Variables
+        private Productos Model;
 
         public IProductosRepository ProductosRepository { get; }
         public ICommand FirstCommand { get; set; }
         public ICommand MoveNextCommand { get; set; }
         public ICommand MovePreviousCommand { get; set; }
-        public ICommand LastCommand  { get; set; }
+        public ICommand LastCommand { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
@@ -18,12 +19,15 @@ namespace Donaciones.WPF {
 
         private int ActualProductID;
         private bool CanCancel;
+        #endregion
 
+        #region Constructor
         public ProductosViewModel(IProductosRepository productosRepository) {
             ProductosRepository = productosRepository;
             LoadFirstProduct();
             InizializedCommands();
-        }
+        } 
+        
 
         private void InizializedCommands() {
             FirstCommand = new RelayCommand(FirstCommand_Executed,FirstCommand_CanExecute);
@@ -49,7 +53,9 @@ namespace Donaciones.WPF {
                 };
             }
         }
-        
+        #endregion
+
+        #region Propiedades
         public int ProductoID {
             get {
                 return Model.ProductoID;
@@ -60,7 +66,7 @@ namespace Donaciones.WPF {
             }
         }
 
-        
+
         public string NombreProducto {
             get {
                 return Model.NombreProducto;
@@ -97,7 +103,9 @@ namespace Donaciones.WPF {
                 RaisePropertyChanged();
             }
         }
+        #endregion
 
+        #region Comandos
         private bool FirstCommand_CanExecute() {
             return true;
         }
@@ -111,7 +119,7 @@ namespace Donaciones.WPF {
             return true;
         }
         private void MoveNextCommand_Executed() {
-            Productos ProductosNext = ProductosRepository.GetNextProducto (Model.ProductoID);
+            Productos ProductosNext = ProductosRepository.GetNextProducto(Model.ProductoID);
             if (ProductosNext != null) {
                 Model = ProductosNext;
             }
@@ -136,7 +144,7 @@ namespace Donaciones.WPF {
             return true;
         }
         private void LastCommand_Executed() {
-            Model=ProductosRepository.GetLastProducto();
+            Model = ProductosRepository.GetLastProducto();
             InicializeModelWhenNull(Model);
             RisePropertyChangedAll();
         }
@@ -168,7 +176,7 @@ namespace Donaciones.WPF {
         }
         private void DeleteCommand_Executed() {
             ProductosRepository.DeleteProducto(Model.ProductoID);
-            Model = ProductosRepository.GetFirstProducto ();
+            Model = ProductosRepository.GetFirstProducto();
             InicializeModelWhenNull(Model);
             RisePropertyChangedAll();
         }
@@ -182,16 +190,18 @@ namespace Donaciones.WPF {
             InicializeModelWhenNull(Model);
             RisePropertyChangedAll();
         }
+        #endregion
 
+        #region Metodos Propios
         private void InicializeModelWhenNull(Productos producto) {
             if (producto == null) {
-                 Model = new Productos() {
+                Model = new Productos() {
                     ProductoID = 0
-                    ,NombreProducto = ""
-                    ,CantidadPorUnidad = 0
-                    ,Descontinuado = false
-                    ,PrecioUnitario = 0
-                    ,OrdenesDetalle = null
+                   ,NombreProducto = ""
+                   ,CantidadPorUnidad = 0
+                   ,Descontinuado = false
+                   ,PrecioUnitario = 0
+                   ,OrdenesDetalle = null
                 };
             }
         }
@@ -201,6 +211,7 @@ namespace Donaciones.WPF {
             RaisePropertyChanged(nameof(CantidadPorUnidad));
             RaisePropertyChanged(nameof(Descontinuado));
             RaisePropertyChanged(nameof(PrecioUnitario));
-        }
+        } 
+        #endregion
     }
 }
