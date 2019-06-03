@@ -14,7 +14,7 @@ namespace Donaciones.WPF {
         private void Application_Startup(object sender,StartupEventArgs e) {
             Startup startup = new Startup();
             var container = startup.Bootstrap();
-            ProductosView window = container.Resolve<ProductosView>();
+            MainWindow window = container.Resolve<MainWindow>();
             window.Show();
         }
     }
