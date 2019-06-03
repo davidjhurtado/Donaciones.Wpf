@@ -70,7 +70,9 @@
     <Compile Include="Libreria\RelayCommand.cs" />
     <Compile Include="Repositorio\BeneficiariosRepository.cs" />
     <Compile Include="Repositorio\IBeneficiariosRepository.cs" />
+    <Compile Include="Repositorio\IOrdenesRepository.cs" />
     <Compile Include="Repositorio\IProductosRepository.cs" />
+    <Compile Include="Repositorio\OrdenesRepository.cs" />
     <Compile Include="Repositorio\ProductosRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\BeneficiariosViewModel.cs" />
