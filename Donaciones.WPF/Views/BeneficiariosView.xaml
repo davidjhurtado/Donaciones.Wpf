@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:WPF="clr-namespace:Donaciones.WPF"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Donaciones.WPF.Views"
+    xmlns:local="clr-namespace:Donaciones.WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Beneficiarios"
-    Width="800"
-    Height="900"
+    Width="580"
+    Height="300"
     Loaded="Window_Loaded"
     mc:Ignorable="d">
     <Window.Resources />
@@ -97,7 +97,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label
                 Grid.Row="0"
@@ -128,147 +127,98 @@
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Margin="3,3,0,3"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Content="City:" />
-            <TextBox
-                x:Name="cityTextBox"
-                Grid.Row="2"
-                Grid.Column="2"
-                Width="120"
-                Height="24"
-                Margin="3,4,0,4"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="{Binding City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="3,3,0,3"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Content="Codigo Postal:" />
-            <TextBox
-                x:Name="codigoPostalTextBox"
-                Grid.Row="2"
-                Grid.Column="2"
-                Width="120"
-                Height="24"
-                Margin="3,4,0,4"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="{Binding CodigoPostal, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-
-            <Label
-                Grid.Row="4"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="3,3,0,3"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Content="Direccion:" />
+                Content="Direccion:"
+                Style="{StaticResource lblFieldName}" />
             <TextBox
                 x:Name="direccionTextBox"
-                Grid.Row="4"
-                Grid.Column="2"
-                Width="120"
-                Height="24"
-                Margin="3,4,0,4"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Width="420"
+                Style="{StaticResource txtFieldStyle}"
                 Text="{Binding Direccion, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
             <Label
-                Grid.Row="5"
+                Grid.Row="3"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Margin="3,3,0,3"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Content="Fax:" />
+                Content="Ciudad:"
+                Style="{StaticResource lblFieldName}" />
             <TextBox
-                x:Name="faxTextBox"
-                Grid.Row="5"
+                x:Name="cityTextBox"
+                Grid.Row="3"
+                Grid.Column="1"
+                Style="{StaticResource txtFieldStyle}"
+                Text="{Binding City, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+            <Label
+                Grid.Row="3"
                 Grid.Column="2"
-                Width="120"
-                Height="24"
-                Margin="3,4,0,4"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="{Binding Fax, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                Content="Codigo Postal:"
+                Style="{StaticResource lblFieldName}" />
+            <TextBox
+                x:Name="codigoPostalTextBox"
+                Grid.Row="3"
+                Grid.Column="3"
+                Style="{StaticResource txtFieldStyle}"
+                Text="{Binding CodigoPostal, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
             <Label
                 Grid.Row="6"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Margin="3,3,0,3"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Content="Iglesia:" />
-            <TextBox
-                x:Name="iglesiaTextBox"
-                Grid.Row="6"
-                Grid.Column="2"
-                Width="120"
-                Height="24"
-                Margin="3,4,0,4"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="{Binding Iglesia, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-            <Label
-                Grid.Row="7"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="3,3,0,3"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Content="Pais:" />
-            <TextBox
-                x:Name="paisTextBox"
-                Grid.Row="7"
-                Grid.Column="2"
-                Width="120"
-                Height="24"
-                Margin="3,4,0,4"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="{Binding Pais, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-            <Label
-                Grid.Row="8"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="3,3,0,3"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Content="Region:" />
+                Content="Region:"
+                Style="{StaticResource lblFieldName}" />
             <TextBox
                 x:Name="regionTextBox"
-                Grid.Row="8"
+                Grid.Row="6"
                 Grid.Column="2"
-                Width="120"
-                Height="24"
-                Margin="3,4,0,4"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
+                Style="{StaticResource txtFieldStyle}"
                 Text="{Binding Region, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
             <Label
-                Grid.Row="9"
+                Grid.Row="6"
+                Grid.Column="2"
+                Content="Pais:"
+                Style="{StaticResource lblFieldName}" />
+            <TextBox
+                x:Name="paisTextBox"
+                Grid.Row="6"
+                Grid.Column="3"
+                Style="{StaticResource txtFieldStyle}"
+                Text="{Binding Pais, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+            <Label
+                Grid.Row="7"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="3,3,0,3"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Content="Telefono:" />
+                Content="Telefono:"
+                Style="{StaticResource lblFieldName}" />
             <TextBox
                 x:Name="telefonoTextBox"
-                Grid.Row="9"
-                Grid.Column="2"
-                Width="120"
-                Height="24"
-                Margin="3,4,0,4"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
+                Grid.Row="7"
+                Grid.Column="1"
+                Style="{StaticResource txtFieldStyle}"
                 Text="{Binding Telefono, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+            <Label
+                Grid.Row="7"
+                Grid.Column="2"
+                Content="Fax:"
+                Style="{StaticResource lblFieldName}" />
+            <TextBox
+                x:Name="faxTextBox"
+                Grid.Row="7"
+                Grid.Column="3"
+                Style="{StaticResource txtFieldStyle}"
+                Text="{Binding Fax, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+            <Label
+                Grid.Row="8"
+                Grid.Column="0"
+                Content="Iglesia:"
+                Style="{StaticResource lblFieldName}" />
+            <TextBox
+                x:Name="iglesiaTextBox"
+                Grid.Row="8"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Width="300"
+                Style="{StaticResource txtFieldStyle}"
+                Text="{Binding Iglesia, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
         </Grid>
     </Grid>
 </Window>
