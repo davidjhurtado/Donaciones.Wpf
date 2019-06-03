@@ -78,6 +78,7 @@
     <Compile Include="ViewModel\BeneficiariosViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModelComputed.cs" />
+    <Compile Include="ViewModel\OrdenesViewModel.cs" />
     <Compile Include="ViewModel\ProductosViewModel.cs" />
     <Compile Include="ViewModel\PropertySourceAttribute.cs" />
     <Compile Include="Views\BeneficiariosView.xaml.cs">
