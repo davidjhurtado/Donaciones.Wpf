@@ -10,8 +10,10 @@ namespace Donaciones.WPF {
         public IContainer Bootstrap() {
             ContainerBuilder containerbuilder = new ContainerBuilder();
             containerbuilder.RegisterType<DonacionesDBEntities>().AsSelf();
+            containerbuilder.RegisterType<OrdenesRepository>().As<IOrdenesRepository>();
             containerbuilder.RegisterType<BeneficiariosRepository>().As<IBeneficiariosRepository>();
             containerbuilder.RegisterType<ProductosRepository>().As<IProductosRepository>();
+            containerbuilder.RegisterType<OrdenesViewModel>().As<IOrdenesViewModel>();
             containerbuilder.RegisterType<BeneficiariosViewModel>().As<IBeneficiariosViewModel>();
             containerbuilder.RegisterType<ProductosViewModel>().As<IProductosViewModel>();
             containerbuilder.RegisterType<MainWindow>().AsSelf();
