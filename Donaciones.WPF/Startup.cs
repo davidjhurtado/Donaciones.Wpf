@@ -12,7 +12,7 @@ namespace Donaciones.WPF {
             containerbuilder.RegisterType<DonacionesDBEntities>().AsSelf();
             containerbuilder.RegisterType<BeneficiariosRepository>().As<IBeneficiariosRepository>();
             containerbuilder.RegisterType<ProductosRepository>().As<IProductosRepository>();
-            containerbuilder.RegisterType<BeneficiariosViewModel>().AsSelf();
+            containerbuilder.RegisterType<BeneficiariosViewModel>().As<IBeneficiariosViewModel>();
             containerbuilder.RegisterType<ProductosViewModel>().As<IProductosViewModel>();
             containerbuilder.RegisterType<MainWindow>().AsSelf();
             return containerbuilder.Build();
