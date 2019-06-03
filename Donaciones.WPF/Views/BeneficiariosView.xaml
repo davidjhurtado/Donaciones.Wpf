@@ -169,7 +169,7 @@
             <TextBox
                 x:Name="regionTextBox"
                 Grid.Row="6"
-                Grid.Column="2"
+                Grid.Column="1"
                 Style="{StaticResource txtFieldStyle}"
                 Text="{Binding Region, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
             <Label
