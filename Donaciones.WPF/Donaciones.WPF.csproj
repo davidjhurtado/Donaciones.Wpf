@@ -84,6 +84,9 @@
     <Compile Include="Views\BeneficiariosView.xaml.cs">
       <DependentUpon>BeneficiariosView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OrdenesView.xaml.cs">
+      <DependentUpon>OrdenesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductosView.xaml.cs">
       <DependentUpon>ProductosView.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BeneficiariosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrdenesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
