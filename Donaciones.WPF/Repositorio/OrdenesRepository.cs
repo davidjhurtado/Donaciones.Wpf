@@ -16,18 +16,18 @@ namespace Donaciones.WPF {
         }
 
         public IEnumerable<Ordenes> GetOrdenes() {
-            return context.Ordenes.ToList();
+            return context.Ordenes.Include(nameof(Beneficiarios)).ToList();
         }
 
         public Ordenes GetFirstOrden() {
-            return context.Ordenes.FirstOrDefault();
+            return GetOrden();
         }
 
         public Ordenes GetLastOrden() {
             var vListadeOrdenes = from orden in context.Ordenes.ToList()
                                       orderby orden.OrdenID descending
                                       select new { orden.OrdenID };
-            return !vListadeOrdenes.Any() ? null : context.Ordenes.Find((int)vListadeOrdenes.FirstOrDefault().OrdenID);
+            return !vListadeOrdenes.Any() ? null : GetOrden((int)vListadeOrdenes.FirstOrDefault().OrdenID);
         }
 
         public Ordenes GetNextOrden(int ordenID) {
@@ -44,11 +44,17 @@ namespace Donaciones.WPF {
                     break;
                 }
             }
-            return context.Ordenes.Find(nextOrdenID);
+            return GetOrden(nextOrdenID);
         }
 
-        public Ordenes GetOrden(int ordenID) {
-            return  context.Ordenes.Find(ordenID);
+        public Ordenes GetOrden(int ordenID=0) {
+            Ordenes vResult;
+            if (ordenID == 0) {
+                vResult = context.Ordenes.Include("Beneficiarios").FirstOrDefault();
+            } else {
+                vResult = context.Ordenes.Include(nameof(Beneficiarios)).FirstOrDefault(t => t.OrdenID == ordenID);
+            }
+            return  vResult;
         }
 
         public Ordenes GetPreviousOrden(int ordenID) {
@@ -61,7 +67,7 @@ namespace Donaciones.WPF {
                     previousOrdenID = vOrden.OrdenID;
                 }
             }
-            return context.Ordenes.Find(previousOrdenID);
+            return GetOrden(previousOrdenID);
         }
 
         public void UpdateOrdenes(Ordenes ordenes) {
