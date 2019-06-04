@@ -112,6 +112,14 @@ namespace Donaciones.WPF {
                 RaisePropertyChanged();
             }
         }
+
+        public string Contacto {
+            get { return Model == null ? string.Empty : Model.Beneficiarios.Contacto; }
+            set { Model.Beneficiarios.Contacto = value;
+                RaisePropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Comandos
@@ -193,6 +201,7 @@ namespace Donaciones.WPF {
                 Model = new Ordenes() {
                     OrdenID = 1
                     ,BeneficiarioID = beneficiariosRepository.GetFirstBeneficiario().BeneficiarioID
+                    ,Beneficiarios = new Beneficiarios() { Contacto = "" }
                     ,FechaEntregada = DateTime.Today
                     ,FechaIngresada = DateTime.Today
                     ,OrdenDate = DateTime.Today
