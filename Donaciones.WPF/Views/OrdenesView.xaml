@@ -72,6 +72,26 @@
                 FontSize="11"
                 Style="{StaticResource NavButton}" />
         </StackPanel>
-        <Grid x:Name="grdOrdenes" Grid.Row="1" />
+        <Grid x:Name="grdOrdenes" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBox
+                x:Name="txtOrderID"
+                Grid.Row="0"
+                Style="{StaticResource txtFieldStyle}"
+                Text="{Binding OrderID}" />
+            <TextBox
+                x:Name="txtBeneficiarioID"
+                Grid.Row="1"
+                Style="{StaticResource txtFieldStyle}"
+                Text="{Binding BeneficiarioID}" />
+            <DataGrid
+                x:Name="grdOrdenDetails"
+                Grid.Row="2"
+                ItemsSource="{Binding OrdenesDetalles}" />
+        </Grid>
     </Grid>
 </Window>
