@@ -20,7 +20,7 @@ namespace Donaciones.WPF {
         }
 
         public Ordenes GetFirstOrden() {
-            return context.Ordenes.First();
+            return context.Ordenes.FirstOrDefault();
         }
 
         public Ordenes GetLastOrden() {
