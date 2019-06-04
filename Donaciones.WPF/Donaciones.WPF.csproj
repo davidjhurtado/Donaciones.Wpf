@@ -183,6 +183,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CreacionDeBDD.sql" />
     <Content Include="Donaciones_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Donaciones_Model.edmx</DependentUpon>
