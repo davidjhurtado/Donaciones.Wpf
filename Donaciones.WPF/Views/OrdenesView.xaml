@@ -78,19 +78,62 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label
+                x:Name="lblOrderID"
+                Grid.Row="0"
+                Grid.Column="0"
+                Content="Nro Orden:"
+                Style="{StaticResource lblFieldName}" />
             <TextBox
                 x:Name="txtOrderID"
                 Grid.Row="0"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Width="120"
+                IsEnabled="False"
                 Style="{StaticResource txtFieldStyle}"
                 Text="{Binding OrderID}" />
-            <TextBox
-                x:Name="txtBeneficiarioID"
+            <Label
+                x:Name="lblOrderDate"
+                Grid.Row="0"
+                Grid.Column="2"
+                Content="Fecha de Orden:"
+                Style="{StaticResource lblFieldName}" />
+            <DatePicker
+                x:Name="dtpOrderDate"
+                Grid.Row="0"
+                Grid.Column="3"
+                Width="180"
+                Text="{Binding OrderDate}" />
+            <Label
+                x:Name="lblContacto"
                 Grid.Row="1"
+                Grid.Column="0"
+                Content="Beneficiario:"
+                Style="{StaticResource lblFieldName}" />
+            <TextBox
+                x:Name="txtContacto"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Width="400"
                 Style="{StaticResource txtFieldStyle}"
-                Text="{Binding BeneficiarioID}" />
+                Text="{Binding Contacto}" />
+
             <DataGrid
                 x:Name="grdOrdenDetails"
                 Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Width="560"
+                Margin="3,3,3,5"
+                VerticalAlignment="Top"
                 ItemsSource="{Binding OrdenesDetalles}" />
         </Grid>
     </Grid>
