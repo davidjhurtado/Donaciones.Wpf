@@ -236,6 +236,13 @@
                     Width="50"
                     Click="Bene_Click"
                     Content="Bene" />
+                <Button
+                    x:Name="Orden"
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Width="50"
+                    Click="Orden_Click"
+                    Content="Orden" />
             </StackPanel>
             <Label
                 Grid.Row="5"

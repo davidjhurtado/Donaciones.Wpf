@@ -25,13 +25,16 @@ namespace Donaciones.WPF {
         private readonly IProductosViewModel pvm;
         private readonly IBeneficiariosViewModel beneficiariosViewModel;
 
-        public MainWindow(IProductosViewModel pvm, IBeneficiariosViewModel beneficiariosViewModel) {
+        private readonly IOrdenesViewModel ordenesViewModel;
+
+        public MainWindow(IProductosViewModel pvm, IBeneficiariosViewModel beneficiariosViewModel, IOrdenesViewModel ordenesViewModel) {
             InitializeComponent();
             benViewSource = ((CollectionViewSource)(FindResource("beneficiariosViewSource")));
             ordViewSource = ((CollectionViewSource)(FindResource("beneficiariosOrdenesViewSource")));
             DataContext = this;
             this.pvm = pvm;
             this.beneficiariosViewModel = beneficiariosViewModel;
+            this.ordenesViewModel = ordenesViewModel;
         }
 
         private void Window_Loaded(object sender,RoutedEventArgs e) {
@@ -58,6 +61,11 @@ namespace Donaciones.WPF {
         private void Bene_Click(object sender,RoutedEventArgs e) {
             BeneficiariosView beneficiariosView = new BeneficiariosView(beneficiariosViewModel);
             beneficiariosView.Show();
+        }
+
+        private void Orden_Click(object sender,RoutedEventArgs e) {
+            OrdenesView ordenesView = new OrdenesView(ordenesViewModel);
+            ordenesView.Show();
         }
     }
 }
