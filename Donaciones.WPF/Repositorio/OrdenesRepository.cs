@@ -9,7 +9,7 @@ namespace Donaciones.WPF {
             this.context = context;
         }
 
-        public bool DeleteBeneficiario(int ordenID) {
+        public bool DeleteOrden(int ordenID) {
             Ordenes vOrden = context.Ordenes.Find(ordenID);
             context.Ordenes.Remove(vOrden);
             return context.SaveChanges() > 0;

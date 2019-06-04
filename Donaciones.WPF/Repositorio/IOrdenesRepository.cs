@@ -9,6 +9,6 @@ namespace Donaciones.WPF {
         IEnumerable<Ordenes> GetOrdenes();
         Ordenes GetLastOrden();
         void UpdateOrdenes(Ordenes ordenes);
-        bool DeleteBeneficiario(int ordenID);
+        bool DeleteOrden(int ordenID);
     }
 }
