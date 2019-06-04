@@ -69,9 +69,9 @@ namespace Donaciones.WPF {
             }
         }
 
-        public DateTime FechaEntregada {
+        public DateTime? FechaEntregada {
             get {
-                return (DateTime)Model.FechaEntregada;
+                return Model.FechaEntregada;
             }
 
             set {
@@ -80,9 +80,9 @@ namespace Donaciones.WPF {
             }
         }
 
-        public DateTime FechaIngresada {
+        public DateTime? FechaIngresada {
             get {
-                return (DateTime)Model.FechaIngresada;
+                return Model.FechaIngresada;
             }
 
             set {
@@ -91,9 +91,9 @@ namespace Donaciones.WPF {
             }
         }
 
-        public DateTime OrdenDate {
+        public DateTime? OrdenDate {
             get {
-                return (DateTime)Model.OrdenDate;
+                return Model.OrdenDate;
             }
 
             set {
@@ -102,6 +102,16 @@ namespace Donaciones.WPF {
             }
         }
 
+        public ObservableCollection<OrdenesDetalle> OrdenesDetalles {
+            get {
+                return Model.OrdenesDetalle;
+            }
+
+            set {
+                Model.OrdenesDetalle = value;
+                RaisePropertyChanged();
+            }
+        }
         #endregion
 
         #region Comandos
@@ -186,7 +196,7 @@ namespace Donaciones.WPF {
                     ,FechaEntregada = DateTime.Today
                     ,FechaIngresada = DateTime.Today
                     ,OrdenDate = DateTime.Today
-                    ,OrdenesDetalle = null
+                    ,OrdenesDetalle = new ObservableCollection<OrdenesDetalle>()
                 };
             } else {
                 Model = orden;
@@ -198,6 +208,7 @@ namespace Donaciones.WPF {
             RaisePropertyChanged(nameof(FechaEntregada));
             RaisePropertyChanged(nameof(FechaIngresada));
             RaisePropertyChanged(nameof(OrdenDate));
+            RaisePropertyChanged(nameof(OrdenesDetalles));
         }
         #endregion
     }
