@@ -1,0 +1,77 @@
+﻿<Window
+    x:Class="Donaciones.WPF.OrdenesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Donaciones.WPF"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="OrdenesView"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Grid x:Name="grdOrdenesWindow">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel
+            x:Name="stpToolBar"
+            Grid.Row="0"
+            Height="36"
+            Margin="2,2,2,0"
+            VerticalAlignment="Top"
+            Background="Gainsboro"
+            Orientation="Horizontal"
+            d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
+            <Button
+                Name="btnFirst"
+                Command="{Binding FirstCommand}"
+                Content="|◄"
+                Style="{StaticResource NavButton}" />
+            <Button
+                Name="btnPrev"
+                Command="{Binding MovePreviousCommand}"
+                Content="◄"
+                Style="{StaticResource NavButton}" />
+            <Button
+                Name="btnNext"
+                Command="{Binding MoveNextCommand}"
+                Content="►"
+                Style="{StaticResource NavButton}" />
+            <Button
+                Name="btnLast"
+                Command="{Binding LastCommand}"
+                Content="►|"
+                Style="{StaticResource NavButton}" />
+            <Button
+                Name="btnAdd"
+                Width="80"
+                Command="{Binding AddCommand}"
+                Content="Nuevo"
+                FontSize="11"
+                Style="{StaticResource NavButton}" />
+            <Button
+                Name="btnUpdate"
+                Width="80"
+                Command="{Binding UpdateCommand}"
+                Content="Guardar"
+                FontSize="11"
+                Style="{StaticResource NavButton}" />
+            <Button
+                Name="btnDelete"
+                Width="80"
+                Command="{Binding DeleteCommand}"
+                Content="Borrar"
+                FontSize="11"
+                Style="{StaticResource NavButton}" />
+            <Button
+                Name="btnCancel"
+                Width="80"
+                Command="{Binding CancelCommand}"
+                Content="Cancelar"
+                FontSize="11"
+                Style="{StaticResource NavButton}" />
+        </StackPanel>
+        <Grid x:Name="grdOrdenes" Grid.Row="1" />
+    </Grid>
+</Window>
