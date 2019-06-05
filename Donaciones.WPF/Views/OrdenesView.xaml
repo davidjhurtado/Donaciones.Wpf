@@ -9,6 +9,11 @@
     Width="800"
     Height="450"
     mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid x:Name="grdOrdenesWindow">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -127,7 +132,7 @@
                 Text="{Binding Contacto}" />
 
             <DataGrid
-                x:Name="grdOrdenDetails"
+                x:Name="dgrOrdenDetails"
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="4"
@@ -135,6 +140,12 @@
                 Margin="3,3,3,5"
                 VerticalAlignment="Top"
                 ItemsSource="{Binding OrdenesDetalles}" />
+            <Grid
+                x:Name="grdOrdenesDetalles"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Visibility="{Binding Path=VisibilyGrid, Converter={StaticResource booleanToVisibilityConverter}}" />
         </Grid>
     </Grid>
 </Window>

@@ -45,6 +45,7 @@ namespace Donaciones.WPF {
             UpdateCommand = new RelayCommand(UpdateCommand_Executed,UpdateCommand_CanExecute);
             DeleteCommand = new RelayCommand(DeleteCommand_Executed,DeleteCommand_CanExecute);
             CancelCommand = new RelayCommand(CancelCommand_Executed,CancelCommand_CanExecute);
+            AddDetail = new RelayCommand(AddDetailCommand_Executed,AddDetailCommand_CanExecute);
         }
         #endregion
 
@@ -119,6 +120,43 @@ namespace Donaciones.WPF {
                 RaisePropertyChanged();
             }
         }
+        private bool visibilygrid = true;
+        public bool VisibilyGrid {
+            get { return visibilygrid; }
+            set {
+                visibilygrid = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private OrdenesDetalle ordenesDetalle ;
+        public int ProductoID {
+            get {
+                return ordenesDetalle.ProductoID;
+            }
+            set {
+                ordenesDetalle.ProductoID = value;
+                RaisePropertyChanged();
+            }
+        }
+        public decimal PrecioUnitario {
+            get {
+                return ordenesDetalle.PrecioUnitario;
+            }
+            set {
+                ordenesDetalle.PrecioUnitario = value;
+                RaisePropertyChanged();
+            }
+        }
+        public short Cantidad {
+            get {
+                return ordenesDetalle.Cantidad;
+            }
+            set {
+                ordenesDetalle.Cantidad = value;
+                RaisePropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -189,6 +227,15 @@ namespace Donaciones.WPF {
             return CanCancel;
         }
         private void CancelCommand_Executed() {
+            CanCancel = false;
+            InicializeModelWhenNull(ordenesRepository.GetOrden(ActualOrderID));
+            RisePropertyChangedAll();
+        }
+
+        private bool AddDetailCommand_CanExecute() {
+            return CanCancel;
+        }
+        private void AddDetailCommand_Executed() {
             CanCancel = false;
             InicializeModelWhenNull(ordenesRepository.GetOrden(ActualOrderID));
             RisePropertyChangedAll();
