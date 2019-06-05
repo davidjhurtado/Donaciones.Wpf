@@ -79,5 +79,11 @@ namespace Donaciones.WPF {
             }
             context.SaveChanges();
         }
+
+        public int GetNextOrderID() {
+            int vOrdenes = context.Ordenes.Max(t => t.OrdenID);
+            return vOrdenes++;
+        }
+
     }
 }
