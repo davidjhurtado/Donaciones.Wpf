@@ -16,6 +16,7 @@ namespace Donaciones.WPF {
             containerbuilder.RegisterType<OrdenesViewModel>().As<IOrdenesViewModel>();
             containerbuilder.RegisterType<BeneficiariosViewModel>().As<IBeneficiariosViewModel>();
             containerbuilder.RegisterType<ProductosViewModel>().As<IProductosViewModel>();
+            containerbuilder.RegisterType<ListProductosViewModel>().As<IListProductosViewModel>();
             containerbuilder.RegisterType<MainWindow>().AsSelf();
             return containerbuilder.Build();
         }

@@ -26,6 +26,7 @@ namespace Donaciones.WPF {
         public ICommand UpdateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand CancelCommand { get; set; }
+        public ICommand AddDetail { get; set; }
         #endregion
 
         #region Constructor
@@ -237,8 +238,17 @@ namespace Donaciones.WPF {
         }
         private void AddDetailCommand_Executed() {
             CanCancel = false;
-            InicializeModelWhenNull(ordenesRepository.GetOrden(ActualOrderID));
+            InicializeDetailModel();
             RisePropertyChangedAll();
+        }
+
+        private void InicializeDetailModel() {
+            ordenesDetalle = new OrdenesDetalle() {
+                OrdenID = OrdenID
+                , Cantidad = 1
+                , PrecioUnitario = 1
+                , ProductoID = 0
+            };
         }
         #endregion
 

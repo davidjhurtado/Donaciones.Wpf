@@ -243,6 +243,13 @@
                     Width="50"
                     Click="Orden_Click"
                     Content="Orden" />
+                <Button
+                    x:Name="ListaPro"
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Width="50"
+                    Click="ListaPro_Click"
+                    Content="Lista Pro" />
             </StackPanel>
             <Label
                 Grid.Row="5"

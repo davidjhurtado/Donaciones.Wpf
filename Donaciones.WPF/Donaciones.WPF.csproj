@@ -44,11 +44,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.0.1\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -67,6 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Libreria\DobleClicCommand.cs" />
     <Compile Include="Libreria\RelayCommand.cs" />
     <Compile Include="Repositorio\BeneficiariosRepository.cs" />
     <Compile Include="Repositorio\IBeneficiariosRepository.cs" />
@@ -78,11 +83,15 @@
     <Compile Include="ViewModel\BeneficiariosViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModelComputed.cs" />
+    <Compile Include="ViewModel\ListProductosViewModel.cs" />
     <Compile Include="ViewModel\OrdenesViewModel.cs" />
     <Compile Include="ViewModel\ProductosViewModel.cs" />
     <Compile Include="ViewModel\PropertySourceAttribute.cs" />
     <Compile Include="Views\BeneficiariosView.xaml.cs">
       <DependentUpon>BeneficiariosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListProductosView.xaml.cs">
+      <DependentUpon>ListProductosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrdenesView.xaml.cs">
       <DependentUpon>OrdenesView.xaml</DependentUpon>
@@ -125,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BeneficiariosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListProductosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
