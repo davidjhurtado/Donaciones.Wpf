@@ -23,6 +23,11 @@ namespace Donaciones.WPF{
             InitializeComponent();
             this.listProductosViewModel = listProductosViewModel;
             DataContext = this.listProductosViewModel;
+            this.listProductosViewModel.CloseAction += CloseWindow;
+        }
+
+        private void CloseWindow() {
+            this.Close();
         }
     }
 }

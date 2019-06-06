@@ -13,6 +13,7 @@ namespace Donaciones.WPF {
         #region Variables
         private readonly IOrdenesRepository ordenesRepository;
         private readonly IBeneficiariosRepository beneficiariosRepository;
+        private readonly IListProductosViewModel listProductosViewModel;
         private ObservableCollection<OrdenesDetalle> obcOrdenesDetalle;
         private Ordenes Model;
         private int ActualOrderID;
@@ -27,15 +28,22 @@ namespace Donaciones.WPF {
         public ICommand DeleteCommand { get; set; }
         public ICommand CancelCommand { get; set; }
         public ICommand AddDetail { get; set; }
+        //public ICommand VerListaProductosCommand { get; set; }
         #endregion
 
         #region Constructor
-        public OrdenesViewModel(IOrdenesRepository ordenesRepository,IBeneficiariosRepository beneficiariosRepository) {
+        public OrdenesViewModel(IOrdenesRepository ordenesRepository,IBeneficiariosRepository beneficiariosRepository, IListProductosViewModel listProductosViewModel) {
             this.ordenesRepository = ordenesRepository;
             this.beneficiariosRepository = beneficiariosRepository;
+            this.listProductosViewModel = listProductosViewModel;
             InicializeModelWhenNull(ordenesRepository.GetFirstOrden());
+            listProductosViewModel.ListResult += ObtenerProductos;
         }
 
+        private void ObtenerProductos(Productos productoseleccionado) {
+            ProductoID = productoseleccionado.ProductoID;
+            NombreProducto = productoseleccionado.NombreProducto;
+        }
 
         private void InizializedCommands() {
             FirstCommand = new RelayCommand(FirstCommand_Executed,FirstCommand_CanExecute);
@@ -47,6 +55,7 @@ namespace Donaciones.WPF {
             DeleteCommand = new RelayCommand(DeleteCommand_Executed,DeleteCommand_CanExecute);
             CancelCommand = new RelayCommand(CancelCommand_Executed,CancelCommand_CanExecute);
             AddDetail = new RelayCommand(AddDetailCommand_Executed,AddDetailCommand_CanExecute);
+            //VerListaProductosCommand = new RelayCommand(VerListaProductosCommand_Executed,VerListaProductosCommand_CanExecute);
         }
         #endregion
 
@@ -158,6 +167,16 @@ namespace Donaciones.WPF {
                 RaisePropertyChanged();
             }
         }
+        private string  nombreproducto = string.Empty;
+        public string NombreProducto {
+            get {
+                return nombreproducto;
+            }
+            set {
+                nombreproducto = value;
+                RaisePropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -241,6 +260,13 @@ namespace Donaciones.WPF {
             InicializeDetailModel();
             RisePropertyChangedAll();
         }
+
+        //private bool VerListaProductosCommand_CanExecute() {
+        //    return CanCancel;
+        //}
+        //private void VerListaProductosCommand_Executed() {
+            
+        //}
 
         private void InicializeDetailModel() {
             ordenesDetalle = new OrdenesDetalle() {

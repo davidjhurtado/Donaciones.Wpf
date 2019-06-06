@@ -66,7 +66,7 @@ namespace Donaciones.WPF {
         }
 
         private void Orden_Click(object sender,RoutedEventArgs e) {
-            OrdenesView ordenesView = new OrdenesView(ordenesViewModel);
+            OrdenesView ordenesView = new OrdenesView(ordenesViewModel,listProductosViewModel);
             ordenesView.Show();
         }
 

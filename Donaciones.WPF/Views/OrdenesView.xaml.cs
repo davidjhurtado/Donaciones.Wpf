@@ -18,11 +18,18 @@ namespace Donaciones.WPF {
     /// </summary>
     public partial class OrdenesView :Window {
         private readonly IOrdenesViewModel ordenesViewModel;
+        private readonly IListProductosViewModel listProductosViewModel;
 
-        public OrdenesView(IOrdenesViewModel ordenesViewModel) {
+        public OrdenesView(IOrdenesViewModel ordenesViewModel, IListProductosViewModel listProductosViewModel) {
             InitializeComponent();
             this.ordenesViewModel = ordenesViewModel;
+            this.listProductosViewModel = listProductosViewModel;
             DataContext = this.ordenesViewModel;
+        }
+
+        private void BtnLista_Click(object sender,RoutedEventArgs e) {
+            ListProductosView listProductosView = new ListProductosView(listProductosViewModel);
+            listProductosView.Show();
         }
     }
 }

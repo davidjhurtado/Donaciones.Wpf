@@ -7,12 +7,18 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Donaciones.WPF {
-    public interface IListProductosViewModel { }
+    public interface IListProductosViewModel {
+        Action<Productos> ListResult { get; set; }
+        Action CloseAction { get; set; }
+    }
     public class ListProductosViewModel :BaseViewModelComputed,IListProductosViewModel {
         private readonly IProductosRepository productosRepository;
         public ObservableCollection<Productos> lstProductos { get; set; }
         public ICommand SeleccionarElementoCommand { get; set; }
+        public Action<Productos> ListResult { get; set; }
+        public Action CloseAction { get; set; }
         public ListProductosViewModel( IProductosRepository productosRepository) {
+            ListResult = new Action<Productos>(SeleccionarElementoCommand_Executed);
             this.productosRepository = productosRepository;
             lstProductos = new ObservableCollection<Productos>();
             LoadProductos();
@@ -33,7 +39,9 @@ namespace Donaciones.WPF {
         }
 
         private void SeleccionarElementoCommand_Executed(Productos producto) {
-            System.Windows.MessageBox.Show("DoubleClick " + producto.NombreProducto);
+            ListResult.Invoke(producto);
+            CloseAction.Invoke();
+            //System.Windows.MessageBox.Show("DoubleClick " + producto.NombreProducto);
         }
 
         

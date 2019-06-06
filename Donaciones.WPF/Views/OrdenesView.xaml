@@ -145,7 +145,16 @@
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="4"
-                Visibility="{Binding Path=VisibilyGrid, Converter={StaticResource booleanToVisibilityConverter}}" />
+                Visibility="{Binding Path=VisibilyGrid, Converter={StaticResource booleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Button
+                    x:Name="btnLista"
+                    Click="BtnLista_Click"
+                    Content="Ver Lista" />
+            </Grid>
         </Grid>
     </Grid>
 </Window>
