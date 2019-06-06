@@ -108,6 +108,7 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 Grid.ColumnSpan="3"
+                MaxLength="5"
                 Style="{StaticResource txtFieldStyle}"
                 Text="{Binding BeneficiarioID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
             <Label
