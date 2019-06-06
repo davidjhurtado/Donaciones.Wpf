@@ -17,15 +17,17 @@ namespace Donaciones.WPF{
     /// Lógica de interacción para ListProductosView.xaml
     /// </summary>
     public partial class ListProductosView :Window {
-        private readonly IListProductosViewModel listProductosViewModel;
+        private IListProductosViewModel listProductosViewModel;
 
-        public ListProductosView(IListProductosViewModel listProductosViewModel) {
+        public ListProductosView() {
             InitializeComponent();
-            this.listProductosViewModel = listProductosViewModel;
-            DataContext = this.listProductosViewModel;
-            this.listProductosViewModel.CloseAction += CloseWindow;
         }
 
+        internal void InitializeDataContext(IListProductosViewModel listProductosViewModel) {
+            this.listProductosViewModel = listProductosViewModel;
+            DataContext = listProductosViewModel;
+            this.listProductosViewModel.CloseAction += CloseWindow;
+        }
         private void CloseWindow() {
             this.Close();
         }
