@@ -71,7 +71,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Libreria\DobleClicCommand.cs" />
     <Compile Include="Libreria\RelayCommand.cs" />
     <Compile Include="Repositorio\BeneficiariosRepository.cs" />
     <Compile Include="Repositorio\IBeneficiariosRepository.cs" />
