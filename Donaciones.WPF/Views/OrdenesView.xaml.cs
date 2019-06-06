@@ -25,11 +25,13 @@ namespace Donaciones.WPF {
             this.ordenesViewModel = ordenesViewModel;
             this.listProductosViewModel = listProductosViewModel;
             DataContext = this.ordenesViewModel;
+            this.ordenesViewModel.ShowList += BtnLista_Click;
         }
 
-        private void BtnLista_Click(object sender,RoutedEventArgs e) {
-            ListProductosView listProductosView = new ListProductosView(listProductosViewModel);
-            listProductosView.Show();
+        private void BtnLista_Click() {
+            ListProductosView listProductosView = new ListProductosView();
+            listProductosView.InitializeDataContext(this.listProductosViewModel);
+            listProductosView.ShowDialog();
         }
     }
 }
