@@ -36,7 +36,8 @@
             AlternationCount="2"
             BorderBrush="#FFA8CC7B"
             ItemContainerStyle="{StaticResource alternatingStyle}"
-            ItemsSource="{Binding lstProductos}">
+            ItemsSource="{Binding lstProductos}"
+            SelectedItem="{Binding ProductoSeleccionado}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
