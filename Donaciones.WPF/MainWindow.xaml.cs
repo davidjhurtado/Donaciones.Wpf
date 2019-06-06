@@ -71,7 +71,8 @@ namespace Donaciones.WPF {
         }
 
         private void ListaPro_Click(object sender,RoutedEventArgs e) {
-            ListProductosView listProductosView = new ListProductosView(listProductosViewModel);
+            ListProductosView listProductosView = new ListProductosView();
+            listProductosView.InitializeDataContext(listProductosViewModel);
             listProductosView.Show();
         }
     }
