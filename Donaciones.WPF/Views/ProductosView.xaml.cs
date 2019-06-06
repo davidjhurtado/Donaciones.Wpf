@@ -25,8 +25,7 @@ namespace Donaciones.WPF {
             DataContext = this.productosViewModel;
         }
 
-        private void Window_Loaded(object sender,RoutedEventArgs e) {
-
+        private void Window_Loaded(object sender,RoutedEventArgs e) {            
 //            System.Windows.Data.CollectionViewSource productosViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("productosViewSource")));
             // Cargar datos estableciendo la propiedad CollectionViewSource.Source:
             // productosViewSource.Source = [origen de datos genérico]
