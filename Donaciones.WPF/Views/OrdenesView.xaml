@@ -76,6 +76,13 @@
                 Content="Cancelar"
                 FontSize="11"
                 Style="{StaticResource NavButton}" />
+            <Button
+                Name="btnAddProduct"
+                Width="90"
+                Command="{Binding AddDetailCommand}"
+                Content="Añadir Producto"
+                FontSize="11"
+                Style="{StaticResource NavButton}" />
         </StackPanel>
         <Grid x:Name="grdOrdenes" Grid.Row="1">
             <Grid.RowDefinitions>
@@ -144,12 +151,17 @@
                 Margin="3,3,3,5"
                 VerticalAlignment="Top"
                 ItemsSource="{Binding OrdenesDetalles}"
-                Visibility="Hidden" />
+                Visibility="{Binding VerGrid, Converter={StaticResource booleanToVisibilityConverter}}" />
+            <!--<Grid
+                x:Name="grdOrdenesDetalles"
+                Grid.Row="1"
+                Visibility="{Binding Path=VisibilyGrid, Converter={StaticResource booleanToVisibilityConverter}}">-->
             <Grid
                 x:Name="grdOrdenesDetalles"
                 Grid.Row="1"
-                Visibility="{Binding Path=VisibilyGrid, Converter={StaticResource booleanToVisibilityConverter}}">
+                Visibility="{Binding VerDetail, Converter={StaticResource booleanToVisibilityConverter}}">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -196,6 +208,45 @@
                         Command="{Binding VerListaProductosCommand}"
                         Content="..." />
                 </StackPanel>
+                <Label
+                    x:Name="lblCantidad"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Content="Cantidad: "
+                    Style="{StaticResource lblFieldName}" />
+                <TextBox
+                    x:Name="txtCantidad"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource txtFieldStyle}"
+                    Text="{Binding Cantidad}" />
+                <Label
+                    x:Name="lblPrecio"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Content="Precio: "
+                    Style="{StaticResource lblFieldName}" />
+
+                <TextBox
+                    x:Name="txtPrecio"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Style="{StaticResource txtFieldStyle}"
+                    Text="{Binding PrecioUnitario}" />
+                <Button
+                    x:Name="btnAddOrderDetail"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Width="200"
+                    Margin="1,2,0,0"
+                    Content="Añadir" />
+                <Button
+                    x:Name="btnCancelOrderDetail"
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    Width="200"
+                    Margin="1,2,0,0"
+                    Content="Cancelar" />
             </Grid>
         </Grid>
     </Grid>

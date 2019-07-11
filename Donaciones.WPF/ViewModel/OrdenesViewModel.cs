@@ -30,8 +30,9 @@ namespace Donaciones.WPF {
         public ICommand UpdateCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand CancelCommand { get; set; }
-        public ICommand AddDetail { get; set; }
-        public ICommand VerListaProductosCommand { get; set; }
+        public ICommand AddDetailCommand { get; set; }
+        public ICommand AddRowProductoCommand { get; set; }
+        public ICommand CancelAddRowProductoCommand { get; set; }
 
         public Action ShowList { get; set; }
         #endregion
@@ -42,6 +43,8 @@ namespace Donaciones.WPF {
             this.beneficiariosRepository = beneficiariosRepository;
             this.listProductosViewModel = listProductosViewModel;
             InicializeModelWhenNull(ordenesRepository.GetFirstOrden());
+            VerGrid = true;
+            VerDetail = false;
             //listProductosViewModel.ListResult += ObtenerProductos;
             InizializedCommands();
         }
@@ -60,8 +63,9 @@ namespace Donaciones.WPF {
             UpdateCommand = new RelayCommand(UpdateCommand_Executed,UpdateCommand_CanExecute);
             DeleteCommand = new RelayCommand(DeleteCommand_Executed,DeleteCommand_CanExecute);
             CancelCommand = new RelayCommand(CancelCommand_Executed,CancelCommand_CanExecute);
-            AddDetail = new RelayCommand(AddDetailCommand_Executed,AddDetailCommand_CanExecute);
-            VerListaProductosCommand = new RelayCommand(VerListaProductosCommand_Executed,VerListaProductosCommand_CanExecute);
+            AddDetailCommand = new RelayCommand(AddDetailCommand_Executed,AddDetailCommand_CanExecute);
+            AddRowProductoCommand = new RelayCommand(AddRowProductoCommand_Executed,AddRowProductoCommand_CanExecute);
+            CancelAddRowProductoCommand = new RelayCommand(AddRowProductoCommand_Executed,AddRowProductoCommand_CanExecute);
         }
         #endregion
 
@@ -183,6 +187,19 @@ namespace Donaciones.WPF {
                 RaisePropertyChanged();
             }
         }
+        private bool vergrid;
+
+        public bool VerGrid {
+            get { return vergrid; }
+            set { vergrid = value; }
+        }
+
+        private bool verdetail;
+
+        public bool VerDetail {
+            get { return verdetail; }
+            set { verdetail = value; }
+        }
 
         #endregion
 
@@ -259,21 +276,24 @@ namespace Donaciones.WPF {
         }
 
         private bool AddDetailCommand_CanExecute() {
-            return CanCancel;
+            return true;
         }
         private void AddDetailCommand_Executed() {
-            CanCancel = false;
+            VerGrid = false;
+            VerDetail = true;
             InicializeDetailModel();
             RisePropertyChangedAll();
         }
 
-        private bool VerListaProductosCommand_CanExecute() {
+        private bool AddRowProductoCommand_CanExecute() {
             return true;
         }
-        private void VerListaProductosCommand_Executed() {
+        private void AddRowProductoCommand_Executed() {
             ShowList.Invoke();
             ordenesDetalle.Productos = listProductosViewModel.ProductoSeleccionado;
-            ProductoID = ordenesDetalle.Productos.ProductoID; 
+            ProductoID = ordenesDetalle.Productos.ProductoID;
+            PrecioUnitario = ordenesDetalle.Productos.PrecioUnitario == null ? 0: (decimal)ordenesDetalle.Productos.PrecioUnitario;
+            NombreProducto = ordenesDetalle.Productos.NombreProducto;
             RaisePropertyChanged(nameof(ordenesDetalle));
         }
 
@@ -311,6 +331,8 @@ namespace Donaciones.WPF {
             RaisePropertyChanged(nameof(FechaIngresada));
             RaisePropertyChanged(nameof(OrdenDate));
             RaisePropertyChanged(nameof(OrdenesDetalles));
+            RaisePropertyChanged(nameof(VerGrid));
+            RaisePropertyChanged(nameof(VerDetail));
         }
         #endregion
     }
